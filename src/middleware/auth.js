@@ -3,6 +3,7 @@ import express from 'express'
 const router = express.Router()
 
 //development
+import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
       dotenv.config()
 const TOKEN_PASS = process.env.TOKEN_PASS 
@@ -20,6 +21,7 @@ const verifyToken = (req, res, next) => {
         return res.status(401).json({ message: 'Invalid token' })
       }
       req.userId = decoded.userId
+      
       next()
     })
   }
